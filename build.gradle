@@ -13,6 +13,9 @@ repositories {
         url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
     }
     maven {
+        url 'https://maven.pkg.github.com/LoneDev6/API-ItemsAdder'
+    }
+    maven {
         name = "reposiliteRepositoryReleases"
         url = "https://mvn.notri1.fr/releases"
     }
@@ -20,6 +23,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT'
+    compileOnly 'dev.lone:api-itemsadder:3.6.3-beta-14'
     implementation 'dev.xernas:menulib:1.1.0'
     // Jetbrains annotations (@NotNull, @Nullable)
     implementation 'org.jetbrains:annotations:24.1.0'
