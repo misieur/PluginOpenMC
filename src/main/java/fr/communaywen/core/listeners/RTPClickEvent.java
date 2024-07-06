@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.communaywen.core.AywenCraftPlugin;
-
 import dev.lone.itemsadder.api.CustomStack;
 
 public class RTPClickEvent implements Listener {
@@ -32,6 +31,7 @@ public class RTPClickEvent implements Listener {
     private int MAX_Y;
     private int MIN_Z;
     private int MAX_Z;
+    private String RTP_WAND_NAME;
 
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
 
@@ -47,6 +47,7 @@ public class RTPClickEvent implements Listener {
         MAX_Y = plugin.getConfig().getInt("rtp.maxy");
         MIN_Z = plugin.getConfig().getInt("rtp.minz");
         MAX_Z = plugin.getConfig().getInt("rtp.maxz");
+        RTP_WAND_NAME = plugin.getConfig().getString("rtp.rtp_wand");
         if (MIN_Y <= -64 || MIN_Y >= 319){
 		    plugin.getConfig().set("rtp.miny", 64);
 		    MIN_Y = 64;
@@ -66,7 +67,7 @@ public class RTPClickEvent implements Listener {
     	    Player player = event.getPlayer();
     	    ItemStack item = player.getItemInHand();
     	    CustomStack customStack = CustomStack.byItemStack(item);
-            if (customStack != null && customStack.getNamespacedID().equals("wand:rtpwand")) {
+            if (customStack != null && customStack.getNamespacedID().equals(RTP_WAND_NAME)) {
 		event.setCancelled(true);
             	UUID playerId = player.getUniqueId();
                 long Time = System.currentTimeMillis() / 1000;
