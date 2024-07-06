@@ -63,10 +63,11 @@ public class RTPClickEvent implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
     	if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-    		Player player = event.getPlayer();
-    		ItemStack item = player.getItemInHand();
-    		CustomStack customStack = CustomStack.byItemStack(item);
+    	    Player player = event.getPlayer();
+    	    ItemStack item = player.getItemInHand();
+    	    CustomStack customStack = CustomStack.byItemStack(item);
             if (customStack != null && customStack.getNamespacedID().equals("wand:rtpwand")) {
+		event.setCancelled(true);
             	UUID playerId = player.getUniqueId();
                 long Time = System.currentTimeMillis() / 1000;
 
@@ -114,7 +115,6 @@ public class RTPClickEvent implements Listener {
                 });
                 return;
             }
-            event.setCancelled(true);
         }
     }
 }
